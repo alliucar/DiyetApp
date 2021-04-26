@@ -1,16 +1,7 @@
-# deneme
+# DiyetApp
 
-A new Flutter application.
+Tüm dünyada etkili olan pandemi ne yazık ki ülkemizde de etkisini göstermektedir. Pandemide salgının önlenmesi amacıyla tüm vatandaşlarımıza "Evde Kal" çağrısı yapılmış olup bir çok vatandaşımız da bu çağrıya uyum sağlamıştır. Evde kaldığımız sürece hareketsizlik, fazla yemek, sağlıksız beslenme vb. gibi nedenlerden dolayı kilo kontrolünü kaybetmiş bulunmaktayız. Bu uygulamanın amacı ise sağlıklı yemek tarifleri, günlük ve haftalık sabah öğle akşam diyet listesi, sağlık blog yazıları, Vücut kitle endeksi hesaplama, günün yemeği ve sağlık ipuçlarını gibi hizmetleri kullanıcılara sunarak ücretsiz bir kaynak oluşturmaktır.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3301456 kodlu MOBİL PROGRAMLAMA dersi kapsamında 203311097 numaralı Ali UÇAR tarafından 30 Nisan 2021 günü yapılmıştır.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
