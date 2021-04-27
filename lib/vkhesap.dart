@@ -41,6 +41,7 @@ class _VkHesapState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       drawer: MyDrawer(),
       body: Builder(
@@ -51,7 +52,7 @@ class _VkHesapState extends State {
                 Padding(
                   padding: EdgeInsets.only(top: 50.0, left: 10.0),
                   child: Image(
-                    image: AssetImage("../assets/images/logo.png"),
+                    image: AssetImage("assets/images/logo.png"),
                   ),
                 ),
                 Expanded(
@@ -132,7 +133,7 @@ class _VkHesapState extends State {
                     Padding(
                       padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Image(
-                        image: AssetImage("../assets/images/tartihesap.png"),
+                        image: AssetImage("assets/images/tartihesap.png"),
                       ),
                     ),
                     Container(

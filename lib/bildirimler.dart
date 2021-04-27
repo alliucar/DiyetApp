@@ -20,7 +20,7 @@ class _BildirimlerState extends State {
               Padding(
                 padding: EdgeInsets.only(top: 50.0, left: 10.0),
                 child: Image(
-                  image: AssetImage("../assets/images/logo.png"),
+                  image: AssetImage("assets/images/logo.png"),
                 ),
               ),
               Expanded(
@@ -92,10 +92,12 @@ class _BildirimlerState extends State {
             ),
             Expanded(
               child: SingleChildScrollView(
+                padding: EdgeInsets.only(bottom: 15.0),
                 scrollDirection: Axis.vertical,
                 child: Column(
                     children:[
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             decoration: BoxDecoration(
@@ -106,8 +108,6 @@ class _BildirimlerState extends State {
                             padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
                             margin: EdgeInsets.only(
                               top: 15.0,
-                              left: 10.0,
-                              right: 5.0,
                             ),
                             child:Row(
                               children: [
@@ -153,6 +153,7 @@ class _BildirimlerState extends State {
                         ],
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             decoration: BoxDecoration(
@@ -163,8 +164,6 @@ class _BildirimlerState extends State {
                             padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
                             margin: EdgeInsets.only(
                               top: 15.0,
-                              left: 10.0,
-                              right: 5.0,
                             ),
                             child:Row(
                               children: [
@@ -210,6 +209,7 @@ class _BildirimlerState extends State {
                         ],
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             decoration: BoxDecoration(
@@ -220,64 +220,6 @@ class _BildirimlerState extends State {
                             padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
                             margin: EdgeInsets.only(
                               top: 15.0,
-                              left: 10.0,
-                              right: 5.0,
-                            ),
-                            child:Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    IconButton(
-                                      color: Colors.black,
-                                      alignment: Alignment.topLeft,
-                                      icon: Icon(
-                                        Icons.notifications_none,
-                                      ),
-                                      iconSize: 40,
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("10/04/2021",  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xff4D565B),
-                                    ),),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                        top: 15.0,
-                                      ),
-                                      constraints: BoxConstraints(maxWidth: 270),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8.0)),
-                                      child:Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",                     style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color(0xff4D565B),
-                                      ),),
-                                    ),
-
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xffF0F3F5),
-                                borderRadius: BorderRadius.all(Radius.circular(10))),
-                            height: 110,
-                            width: MediaQuery.of(context).size.width * 0.94,
-                            padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
-                            margin: EdgeInsets.only(
-                              top: 15.0,
-                              left: 10.0,
-                              right: 5.0,
                             ),
                             child:Row(
                               children: [
@@ -323,6 +265,7 @@ class _BildirimlerState extends State {
                         ],
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             decoration: BoxDecoration(
@@ -333,8 +276,6 @@ class _BildirimlerState extends State {
                             padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
                             margin: EdgeInsets.only(
                               top: 15.0,
-                              left: 10.0,
-                              right: 5.0,
                             ),
                             child:Row(
                               children: [
@@ -380,6 +321,7 @@ class _BildirimlerState extends State {
                         ],
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             decoration: BoxDecoration(
@@ -390,8 +332,6 @@ class _BildirimlerState extends State {
                             padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
                             margin: EdgeInsets.only(
                               top: 15.0,
-                              left: 10.0,
-                              right: 5.0,
                             ),
                             child:Row(
                               children: [
@@ -436,6 +376,119 @@ class _BildirimlerState extends State {
                           ),
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xffF0F3F5),
+                                borderRadius: BorderRadius.all(Radius.circular(10))),
+                            height: 110,
+                            width: MediaQuery.of(context).size.width * 0.94,
+                            padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
+                            margin: EdgeInsets.only(
+                              top: 15.0,
+                            ),
+                            child:Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    IconButton(
+                                      color: Colors.black,
+                                      alignment: Alignment.topLeft,
+                                      icon: Icon(
+                                        Icons.notifications_none,
+                                      ),
+                                      iconSize: 40,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                                    Text("10/04/2021",  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xff4D565B),
+                                    ),),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        top: 15.0,
+                                      ),
+                                      constraints: BoxConstraints(maxWidth: 270),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8.0)),
+                                      child:Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",                     style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xff4D565B),
+                                      ),),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xffF0F3F5),
+                                borderRadius: BorderRadius.all(Radius.circular(10))),
+                            height: 110,
+                            width: MediaQuery.of(context).size.width * 0.94,
+                            padding: EdgeInsets.only(right: 10.0, top:15.0, bottom: 15.0,),
+                            margin: EdgeInsets.only(
+                              top: 15.0,
+                            ),
+                            child:Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    IconButton(
+                                      color: Colors.black,
+                                      alignment: Alignment.topLeft,
+                                      icon: Icon(
+                                        Icons.notifications_none,
+                                      ),
+                                      iconSize: 40,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                                    Text("10/04/2021",  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xff4D565B),
+                                    ),),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        top: 15.0,
+                                      ),
+                                      constraints: BoxConstraints(maxWidth: 270),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8.0)),
+                                      child:Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",                     style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xff4D565B),
+                                      ),),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+
                     ]
                 ),
               ),

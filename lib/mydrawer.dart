@@ -27,7 +27,7 @@ class _MyDrawerState extends State {
                     Padding(
                       padding: EdgeInsets.only(top: 10.0),
                       child: Image(
-                        image: AssetImage("../assets/images/logo.png"),
+                        image: AssetImage("assets/images/logo.png"),
                       ),
                     ),
                   ],

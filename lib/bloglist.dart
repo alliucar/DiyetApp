@@ -22,7 +22,7 @@ class _BlogListState extends State {
                 Padding(
                   padding: EdgeInsets.only(top: 50.0, left: 10.0),
                   child: Image(
-                    image: AssetImage("../assets/images/logo.png"),
+                    image: AssetImage("assets/images/logo.png"),
                   ),
                 ),
                 Expanded(
@@ -120,7 +120,7 @@ class _BlogListState extends State {
                                       Padding(padding: EdgeInsets.only(right: 10.0),
                                         child:Image(
                                           image:
-                                          AssetImage("../assets/images/blog1.png"),
+                                          AssetImage("assets/images/blog1.png"),
                                         ),
                                       )
 
@@ -184,7 +184,7 @@ class _BlogListState extends State {
                                       Padding(padding: EdgeInsets.only(right: 10.0),
                                         child:Image(
                                           image:
-                                          AssetImage("../assets/images/blog1.png"),
+                                          AssetImage("assets/images/blog1.png"),
                                         ),
                                       )
 
@@ -248,7 +248,7 @@ class _BlogListState extends State {
                                       Padding(padding: EdgeInsets.only(right: 10.0),
                                         child:Image(
                                           image:
-                                          AssetImage("../assets/images/blog1.png"),
+                                          AssetImage("assets/images/blog1.png"),
                                         ),
                                       )
 

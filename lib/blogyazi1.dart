@@ -20,7 +20,7 @@ class _BlogYazi1State extends State {
                 Padding(
                   padding: EdgeInsets.only(top: 50.0, left: 10.0),
                   child: Image(
-                    image: AssetImage("../assets/images/logo.png"),
+                    image: AssetImage("assets/images/logo.png"),
                   ),
                 ),
                 Expanded(
@@ -114,7 +114,7 @@ class _BlogYazi1State extends State {
                                       MediaQuery.of(context).size.width * 0.94,
                                   fit: BoxFit.cover,
                                   image:
-                                      AssetImage("../assets/images/blogyazi1.png"),
+                                      AssetImage("assets/images/blogyazi1.png"),
                                 ),
                               ),
                             ],

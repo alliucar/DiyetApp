@@ -47,22 +47,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/logo.png
-    - assets/images/slider.png
-    - assets/images/ok.png
-    - assets/images/kalorihesapla.png
-    - assets/images/diyettarifleri.png
-    - assets/images/diyetlistesi.png
-    - assets/images/diyetblog.png
-    - assets/images/ipuclari.png
-    - assets/images/gununyemegi.png
-    - assets/images/gunlukyemek.png
-    - assets/images/nohutlusalataimgk.png
-    - assets/images/ipucu1.png
-    - assets/images/ipucu2.png
-    - assets/images/blog1.png
-    - assets/images/blogyazi1.png
-    - assets/images/tartihesap.png
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

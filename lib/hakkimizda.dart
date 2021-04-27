@@ -20,7 +20,7 @@ class _HakkimizdaState extends State {
                 Padding(
                   padding: EdgeInsets.only(top: 50.0, left: 10.0),
                   child: Image(
-                    image: AssetImage("../assets/images/logo.png"),
+                    image: AssetImage("assets/images/logo.png"),
                   ),
                 ),
                 Expanded(
@@ -104,7 +104,7 @@ class _HakkimizdaState extends State {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        "Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3301456 kodlu MOBİL PROGRAMLAMA dersi kapsamında 203311097 numaralı Öğrenci Ali UÇAR tarafından 30 Nisan 2021 günü yapılmıştır.",
+                        "Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3311456 kodlu MOBİL PROGRAMLAMA dersi kapsamında 203311097 numaralı Öğrenci Ali UÇAR tarafından 30 Nisan 2021 günü yapılmıştır.",
                         style: TextStyle(
                           fontSize: 12,
                           color: Color(0xff4D565B),
