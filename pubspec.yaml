@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   mask_text_input_formatter: ^1.2.1
+  getwidget: ^1.1.0
+  animated_text_kit: ^4.2.1
+  fl_chart: ^0.36.2
 
 
   # The following adds the Cupertino Icons font to your application.

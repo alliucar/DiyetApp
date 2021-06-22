@@ -42,12 +42,18 @@ class _MyDrawerState extends State {
                 Navigator.pushNamed(context, "/");
               },
             ),
+            const Divider(
+              height: 20,
+              thickness: 5,
+              indent: 20,
+              endIndent: 20,
+            ),
             ListTile(
               leading: Icon(Icons.add_rounded ),
-              title: Text('Vücut Kitle Endeksi Hesapla'),
+              title: Text('Hesaplamalar'),
               trailing: Icon(Icons.arrow_right),
               onTap: () {
-                Navigator.pushNamed(context, "/vkhesap");
+                Navigator.pushNamed(context, "/hesaplamalar");
               },
             ),
             ListTile(
@@ -104,6 +110,30 @@ class _MyDrawerState extends State {
               trailing: Icon(Icons.arrow_right),
               onTap: () {
                 Navigator.pushNamed(context, "/hakkimizda");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.add_rounded ),
+              title: Text('Bazal Hesaplama'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                Navigator.pushNamed(context, "/ebmhesap");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.add_rounded ),
+              title: Text('Egzersizler'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                Navigator.pushNamed(context, "/egzersiz");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.add_rounded ),
+              title: Text('İstatistikler'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                Navigator.pushNamed(context, "/chart");
               },
             ),
             ListTile(

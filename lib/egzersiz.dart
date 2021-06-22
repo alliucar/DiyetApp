@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:deneme/mydrawer.dart';
 
-class Hakkimizda extends StatefulWidget {
+class Egzersiz extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _HakkimizdaState();
+  State<StatefulWidget> createState() => _EgzersizState();
 }
 
-class _HakkimizdaState extends State {
+class _EgzersizState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +65,7 @@ class _HakkimizdaState extends State {
                 Padding(
                   padding: EdgeInsets.only(top: 10.0, left: 10.0),
                   child: Text(
-                    "Hakkımızda",
+                    "Egzersizler",
                     textDirection: TextDirection.rtl,
                     textAlign: TextAlign.left,
                     style: TextStyle(
@@ -94,24 +94,66 @@ class _HakkimizdaState extends State {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(10.0),
-                      constraints: BoxConstraints(maxWidth: 370),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Text(
-                        "Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3311456 kodlu MOBİL PROGRAMLAMA dersi kapsamında 203311097 numaralı Öğrenci Ali UÇAR tarafından 25 Haziran 2021 günü yapılmıştır.",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xff4D565B),
-                        ),
-                      ),
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    final snackBar = SnackBar(content: Text('3 Set x 10 Tekrar Yapılacak'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }, // handle your image tap here
+                  child: Image.asset(
+                    'assets/images/kopru.png',
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    fit: BoxFit.cover, // this is the solution for border
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onDoubleTap: () {
+                    final snackBar = SnackBar(content: Text('3 Set x 10 Tekrar Yapılacak'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }, // handle your image tap here
+                  child: Image.asset(
+                    'assets/images/ellerdizlere.png',
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    fit: BoxFit.cover, // this is the solution for border
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onLongPress: () {
+                    final snackBar = SnackBar(content: Text('3 Set x 10 Tekrar Yapılacak'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }, // handle your image tap here
+                  child: Image.asset(
+                    'assets/images/dizlergoguse.png',
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    fit: BoxFit.cover, // this is the solution for border
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTapCancel: () {
+                    final snackBar = SnackBar(content: Text('3 Set x 10 Tekrar Yapılacak'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }, // handle your image tap here
+                  child: Image.asset(
+                    'assets/images/bacakkaslara.png',
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    fit: BoxFit.cover, // this is the solution for border
+                  ),
                 ),
               ],
             ),

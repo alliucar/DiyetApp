@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:deneme/mydrawer.dart';
 
-class Hakkimizda extends StatefulWidget {
+class Bmhesap extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _HakkimizdaState();
+  State<StatefulWidget> createState() => _BmhesapState();
 }
 
-class _HakkimizdaState extends State {
+class _BmhesapState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +65,7 @@ class _HakkimizdaState extends State {
                 Padding(
                   padding: EdgeInsets.only(top: 10.0, left: 10.0),
                   child: Text(
-                    "Hakkımızda",
+                    "Bazal Metabolizma Hızı Hesapla",
                     textDirection: TextDirection.rtl,
                     textAlign: TextAlign.left,
                     style: TextStyle(
@@ -94,23 +94,51 @@ class _HakkimizdaState extends State {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0, left: 10.0, bottom:20.0),
+                  child: Image(
+                    image: AssetImage("assets/images/mhizi.png"),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text('Lütfen Cinsiyetinizi Seçin'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(10.0),
-                      constraints: BoxConstraints(maxWidth: 370),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Text(
-                        "Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3311456 kodlu MOBİL PROGRAMLAMA dersi kapsamında 203311097 numaralı Öğrenci Ali UÇAR tarafından 25 Haziran 2021 günü yapılmıştır.",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xff4D565B),
-                        ),
+                    InkWell(
+                      child: Image(
+                        height: 180,
+                        image: AssetImage("assets/images/kadin.png"),
                       ),
+                      onTap: () {
+                        Navigator.pushNamed(context, "/kbmhesap");
+                      },
                     ),
+
+                  ],
+                ),
+                Column(
+                  children: [
+                    InkWell(
+                      child: Image(
+                        height: 180,
+                        image: AssetImage("assets/images/erkek.png"),
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, "/ebmhesap");
+                      },
+                    ),
+
                   ],
                 ),
               ],

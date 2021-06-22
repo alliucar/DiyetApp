@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:deneme/diyettariflist.dart';
 import 'package:deneme/iletisim.dart';
 import 'package:deneme/ipucu.dart';
@@ -7,19 +8,34 @@ import 'package:deneme/mydrawer.dart';
 import 'package:deneme/diyetlistesi.dart';
 import 'package:deneme/gununyemegi.dart';
 import 'package:deneme/bildirimler.dart';
-import 'package:deneme/diyettariflist.dart';
-import 'package:deneme/ipucu.dart';
-import 'package:deneme/iletisim.dart';
 import 'package:deneme/nohutsalatasi.dart';
 import 'package:deneme/bloglist.dart';
 import 'package:deneme/blogyazi1.dart';
 import 'package:deneme/vkhesap.dart';
+import 'package:deneme/ebmhesap.dart';
+import 'package:deneme/hesaplamalar.dart';
+import 'package:deneme/bmhesap.dart';
+import 'package:deneme/kbmhesap.dart';
+import 'package:deneme/sorucevap.dart';
+import 'package:deneme/karisimlist.dart';
+import 'package:deneme/karisimyazi1.dart';
+import 'package:deneme/egzersiz.dart';
+import 'package:deneme/chart.dart';
 void main() {
   runApp(new MaterialApp(
     debugShowCheckedModeBanner: false,
     home: new Homepage(),
     initialRoute: '/',
     routes: {
+      '/chart': (context) => Chart(),
+      '/egzersiz': (context) => Egzersiz(),
+      '/karisimyazi1': (context) => KarisimYazi1(),
+      '/karisimlist': (context) => KarisimList(),
+      '/sorucevap': (context) => Sorucevap(),
+      '/kbmhesap': (context) => KbmHesap(),
+      '/bmhesap': (context) => Bmhesap(),
+      '/hesaplamalar': (context) => Hesaplamalar(),
+      '/ebmhesap': (context) => EbmHesap(),
       '/vkhesap': (context) => VkHesap(),
       '/blogyazi1': (context) => BlogYazi1(),
       '/bloglist': (context) => BlogList(),
@@ -133,13 +149,24 @@ class _HomepageState extends State<Homepage> {
                     margin: EdgeInsets.only(
                       top: 15.0,
                     ),
-                    padding: EdgeInsets.only(top: 18.0),
-                    child: Text(
-                      "Düzenli uyuyun.Düzenli uyku kilo vermenin temelidir.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xff4D565B),
+                    padding: EdgeInsets.only(top: 18.0, left: 20.0),
+                    child:
+                    SizedBox(
+                      width: 250.0,
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        child: AnimatedTextKit(
+                          animatedTexts: [
+                            FadeAnimatedText('Dilemeyi kes. Yapmaya başla.'),
+                            FadeAnimatedText('Aynanıza bakın, bu sizin yarışmanız.'),
+                            FadeAnimatedText('Mazeretlerinizden daha güçlü olun.'),
+                            FadeAnimatedText('Bunu istemiyorum. Onun için çabala!'),
+                          ],
+                          pause: const Duration(milliseconds: 1000),
+                        ),
                       ),
                     ),
                   ),
@@ -169,7 +196,7 @@ class _HomepageState extends State<Homepage> {
                             padding: EdgeInsets.only(top: 20.0),
                           ),
                           Text(
-                            "Vücut Kitle E. Hesapla",
+                            "Hesaplamalar",
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -203,7 +230,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, "/vkhesap");
+                      Navigator.pushNamed(context, "/hesaplamalar");
                     },
                   ),
 
@@ -518,6 +545,133 @@ class _HomepageState extends State<Homepage> {
 
                 ],
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    child:   Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xffE6DDF0),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      height: 140,
+                      width: 168,
+                      padding: EdgeInsets.all(15.0),
+                      margin: EdgeInsets.only(
+                        top: 15.0,
+                        right: 5.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image(
+                            image: AssetImage("assets/images/karisimlar.png"),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 20.0),
+                          ),
+                          Text(
+                            "Karışımlar",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff4D565B),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  right: 5.0,
+                                ),
+                                child: Image(
+                                  image: AssetImage("assets/images/ok.png"),
+                                ),
+                              ),
+                              Text(
+                                "Detay",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xff4D565B),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, "/karisimlist");
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xffF0F3F5),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      height: 140,
+                      width: 168,
+                      padding: EdgeInsets.all(15.0),
+                      margin: EdgeInsets.only(
+                        top: 15.0,
+                        left: 10.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image(
+                            image:
+                            AssetImage("assets/images/sorucevap.png"),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 20.0),
+                          ),
+                          Text(
+                            "Soru - Cevap",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff4D565B),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  right: 5.0,
+                                ),
+                                child: Image(
+                                  image: AssetImage("assets/images/ok.png"),
+                                ),
+                              ),
+                              Text(
+                                "Detay",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xff4D565B),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, "/sorucevap");
+                    },
+                  ),
+
+
+                ],
+              ),
+
             ],
           ),
         ),
