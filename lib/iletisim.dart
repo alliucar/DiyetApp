@@ -1,3 +1,5 @@
+import 'package:deneme/http/httpservice.dart';
+import 'package:deneme/models/ContactModel.dart';
 import 'package:flutter/material.dart';
 import 'package:deneme/mydrawer.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -8,7 +10,50 @@ class Contact extends StatefulWidget {
 }
 
 class _ContactState extends State {
-  var maskFormatter = new MaskTextInputFormatter(mask: '+90 (###) ###-##-##', filter: { "#": RegExp(r'[0-9]') });
+  var maskFormatter = new MaskTextInputFormatter(mask: '+90 (###) ###-##-##', filter: {"#": RegExp(r'[0-9]')});
+
+  final txtAdSoyad = TextEditingController();
+  final txtEposta = TextEditingController();
+  final txtTelefon = TextEditingController();
+  final txtKonu = TextEditingController();
+  final txtMesaj = TextEditingController();
+  HttpService _service;
+  bool _isButtonDisabled = false;
+  String gonderText = "Gönder";
+
+  @override
+  void initState() {
+    _service = HttpService();
+    super.initState();
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Mesajınız Gönderildi'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Mesajınız Gönderildi'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Tamam'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,9 +149,9 @@ class _ContactState extends State {
                       Container(
                         padding: EdgeInsets.all(10.0),
                         constraints: BoxConstraints(maxWidth: 370),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
                         child: TextField(
+                          controller: txtAdSoyad,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Adınız Soyadınız',
@@ -116,9 +161,9 @@ class _ContactState extends State {
                       Container(
                         padding: EdgeInsets.all(10.0),
                         constraints: BoxConstraints(maxWidth: 370),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
                         child: TextField(
+                          controller: txtEposta,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'E-Posta Adresiniz',
@@ -128,9 +173,9 @@ class _ContactState extends State {
                       Container(
                         padding: EdgeInsets.all(10.0),
                         constraints: BoxConstraints(maxWidth: 370),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
                         child: TextField(
+                          controller: txtTelefon,
                           inputFormatters: [maskFormatter],
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -141,9 +186,9 @@ class _ContactState extends State {
                       Container(
                         padding: EdgeInsets.all(10.0),
                         constraints: BoxConstraints(maxWidth: 370),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
                         child: TextField(
+                          controller: txtKonu,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Konu',
@@ -153,9 +198,9 @@ class _ContactState extends State {
                       Container(
                         padding: EdgeInsets.all(10.0),
                         constraints: BoxConstraints(maxWidth: 370),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
                         child: TextField(
+                          controller: txtMesaj,
                           maxLines: 5,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -166,25 +211,31 @@ class _ContactState extends State {
                       Container(
                         padding: EdgeInsets.all(8.0),
                         constraints: BoxConstraints(maxWidth: 370),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0)),
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child:
-                            SizedBox(
-                              height: 50,
-                              width: 350,
-                              child:ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Color(0xffC85D72), // background
-                                  onPrimary: Colors.white, // foreground
-                                ),
-                                onPressed: () {},
-                                child: Text(' Gönder'),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            height: 50,
+                            width: 350,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xffC85D72), // background
+                                onPrimary: Colors.white, // foreground
                               ),
+                              onPressed: _isButtonDisabled
+                                  ? null
+                                  : () async {
+                                setState(() {
+                                  _isButtonDisabled = true;
+                                  gonderText = "Gönderiliyor...";
+                                });
+                                ContactModel result = await _service.setContact(txtEposta.text, txtKonu.text, txtMesaj.text);
+                                _showMyDialog();
+                              },
+                              child: Text(' Gönder'),
                             ),
-
                           ),
+                        ),
                       ),
                     ],
                   ),

@@ -1,14 +1,37 @@
+import 'package:deneme/models/BlogsModel.dart' as blogs;
 import 'package:flutter/material.dart';
 import 'package:deneme/mydrawer.dart';
+
+import 'http/httpservice.dart';
+import 'models/ScreenArguments.dart';
 
 class BlogYazi1 extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _BlogYazi1State();
 }
 
-class _BlogYazi1State extends State {
+class _BlogYazi1State extends State<BlogYazi1> {
+  HttpService _service;
+  Future<blogs.BlogsModel> _blog;
+  ScreenArguments args;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    args = ModalRoute.of(context).settings.arguments as ScreenArguments;
+    _service = HttpService();
+    _blog = _service.getBlog(args.id);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
+    //print(args.id.toString());
+
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: MyDrawer(),
@@ -88,7 +111,7 @@ class _BlogYazi1State extends State {
                       ),
                       iconSize: 20,
                       onPressed: () {
-                        Navigator.pushNamed(context, "/main");
+                        Navigator.pop(context);
                       },
                     )),
               ],
@@ -99,67 +122,80 @@ class _BlogYazi1State extends State {
                 child: Column(children: [
                   Row(
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: 15.0,
-                                  left: 10.0,
+                      FutureBuilder(
+                          future: _blog,
+                          builder: (BuildContext context, AsyncSnapshot<blogs.BlogsModel> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.active) {
+                              return Center(
+                                child: Column(
+                                  children: [CircularProgressIndicator(), Text("ilk İstek 30sn Zaman Alabilir")],
                                 ),
-                                child: Image(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.94,
-                                  fit: BoxFit.cover,
-                                  image:
-                                      AssetImage("assets/images/blogyazi1.png"),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: 15.0,
-                                  left: 10.0,
-                                ),
-                                child: Text(
-                                  "Sınav Öncesi Beslenme",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff4D565B),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 15.0,
-                                    left: 10.0,
-                                  ),
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(maxWidth: 350),
-                                    child: Container(
-                                      child: Text(
-                                        "Düzenli uyku kilo vermenin temelidir. Vücudunuz için yeterli olmayan uyku saatleri ertesi gün vücudunuzda ödem birikmesine neden olur. Bu durumda tartı üstünde kilonuzu fazla görürsünüz. Ayrıca yapılan bilimsel çalışmalar gece geç saatlere kadar oturanlar bireylerin daha fazla kalori aldığını ve uzun vadeli daha fazla kilo aldığı görülmüştür.",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xff4D565B),
+                              );
+                            }
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: 15.0,
+                                          left: 10.0,
+                                        ),
+                                        child: Image.network(
+                                          "https://blooming-anchorage-42064.herokuapp.com" + snapshot.data.image.url,
+                                          width: MediaQuery.of(context).size.width * 0.94,
                                         ),
                                       ),
-                                    ),
-                                  )),
-                            ],
-                          ),
-                        ],
-                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: 15.0,
+                                          left: 10.0,
+                                        ),
+                                        child: Text(
+                                          snapshot.data.title,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xff4D565B),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 15.0,
+                                            left: 10.0,
+                                          ),
+                                          child: ConstrainedBox(
+                                            constraints: BoxConstraints(maxWidth: 350),
+                                            child: Container(
+                                              child: Text(
+                                                snapshot.data.content,
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Color(0xff4D565B),
+                                                ),
+                                              ),
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              );
+                            }
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }),
                     ],
                   ),
                 ]),

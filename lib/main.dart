@@ -21,6 +21,10 @@ import 'package:deneme/karisimlist.dart';
 import 'package:deneme/karisimyazi1.dart';
 import 'package:deneme/egzersiz.dart';
 import 'package:deneme/chart.dart';
+
+import 'database/db_helper.dart';
+import 'models/SozlerModel.dart';
+
 void main() {
   runApp(new MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -58,6 +62,13 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  DbHelper _dbHelper;
+  @override
+  void initState() {
+    _dbHelper = DbHelper();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,9 +107,7 @@ class _HomepageState extends State<Homepage> {
                           onPressed: () {
                             Navigator.pushNamed(context, "/bildirimler");
                           },
-                        )
-                    ),
-
+                        )),
                   ),
                   Container(
                       margin: const EdgeInsets.only(top: 50.0, right: 10.0),
@@ -122,9 +131,8 @@ class _HomepageState extends State<Homepage> {
                     padding: EdgeInsets.only(
                       top: 15.0,
                     ),
-                    child:
-                    InkWell(
-                      child:Image(
+                    child: InkWell(
+                      child: Image(
                         width: MediaQuery.of(context).size.width * 0.94,
                         fit: BoxFit.cover,
                         image: AssetImage("assets/images/slider.png"),
@@ -133,7 +141,6 @@ class _HomepageState extends State<Homepage> {
                         Navigator.pushNamed(context, "/diyettariflist");
                       },
                     ),
-
                   ),
                 ],
               ),
@@ -141,31 +148,34 @@ class _HomepageState extends State<Homepage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                        color: Color(0xffCFD8DD),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    decoration: BoxDecoration(color: Color(0xffCFD8DD), borderRadius: BorderRadius.all(Radius.circular(10))),
                     height: 50,
                     width: MediaQuery.of(context).size.width * 0.94,
                     margin: EdgeInsets.only(
                       top: 15.0,
                     ),
                     padding: EdgeInsets.only(top: 18.0, left: 20.0),
-                    child:
-                    SizedBox(
+                    child: SizedBox(
                       width: 250.0,
                       child: DefaultTextStyle(
                         style: const TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xff4D565B),
                         ),
-                        child: AnimatedTextKit(
-                          animatedTexts: [
-                            FadeAnimatedText('Dilemeyi kes. Yapmaya başla.'),
-                            FadeAnimatedText('Aynanıza bakın, bu sizin yarışmanız.'),
-                            FadeAnimatedText('Mazeretlerinizden daha güçlü olun.'),
-                            FadeAnimatedText('Bunu istemiyorum. Onun için çabala!'),
-                          ],
-                          pause: const Duration(milliseconds: 1000),
+                        child: FutureBuilder(
+                          future: _dbHelper.getSozler(),
+                          builder: (BuildContext context, AsyncSnapshot<List<SozlerModel>> snapshot) {
+                            if (!snapshot.hasData) return CircularProgressIndicator();
+                            if (snapshot.data.isEmpty) return Text("Özlü Söz Bulunamadı");
+                            List<SozlerModel> sozler = snapshot.data;
+                            return AnimatedTextKit(
+                              animatedTexts: sozler.map((e) {
+                                return FadeAnimatedText(e.soz);
+                              }).toList(),
+                              pause: const Duration(milliseconds: 2000),
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -177,9 +187,7 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   InkWell(
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffC9DEDD),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      decoration: BoxDecoration(color: Color(0xffC9DEDD), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -233,12 +241,9 @@ class _HomepageState extends State<Homepage> {
                       Navigator.pushNamed(context, "/hesaplamalar");
                     },
                   ),
-
                   InkWell(
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffF0F3F5),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      decoration: BoxDecoration(color: Color(0xffF0F3F5), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -250,8 +255,7 @@ class _HomepageState extends State<Homepage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image(
-                            image:
-                            AssetImage("assets/images/diyettarifleri.png"),
+                            image: AssetImage("assets/images/diyettarifleri.png"),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 20.0),
@@ -294,17 +298,14 @@ class _HomepageState extends State<Homepage> {
                       Navigator.pushNamed(context, "/diyettariflist");
                     },
                   ),
-
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
-                    child:   Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffE6DDF0),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Container(
+                      decoration: BoxDecoration(color: Color(0xffE6DDF0), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -361,9 +362,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                   InkWell(
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffD2D1DA),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      decoration: BoxDecoration(color: Color(0xffD2D1DA), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -424,10 +423,8 @@ class _HomepageState extends State<Homepage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
-                    child:   Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffF0F0F0),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Container(
+                      decoration: BoxDecoration(color: Color(0xffF0F0F0), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -483,10 +480,8 @@ class _HomepageState extends State<Homepage> {
                     },
                   ),
                   InkWell(
-                    child:   Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffE8F6F6),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Container(
+                      decoration: BoxDecoration(color: Color(0xffE8F6F6), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -541,18 +536,14 @@ class _HomepageState extends State<Homepage> {
                       Navigator.pushNamed(context, "/ipucu");
                     },
                   ),
-
-
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
-                    child:   Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffE6DDF0),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Container(
+                      decoration: BoxDecoration(color: Color(0xffE6DDF0), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -609,9 +600,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                   InkWell(
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffF0F3F5),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      decoration: BoxDecoration(color: Color(0xffF0F3F5), borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 140,
                       width: 168,
                       padding: EdgeInsets.all(15.0),
@@ -623,8 +612,7 @@ class _HomepageState extends State<Homepage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image(
-                            image:
-                            AssetImage("assets/images/sorucevap.png"),
+                            image: AssetImage("assets/images/sorucevap.png"),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 20.0),
@@ -667,11 +655,8 @@ class _HomepageState extends State<Homepage> {
                       Navigator.pushNamed(context, "/sorucevap");
                     },
                   ),
-
-
                 ],
               ),
-
             ],
           ),
         ),
